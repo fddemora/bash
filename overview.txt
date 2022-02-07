@@ -1,0 +1,136 @@
+Manual Structure:
+1  User Commands  Commands that can be run from the shell by a normal user
+2  System Calls   Programming functions used to make calls to the Linux kernel
+3  C Library Functions   Programming functions that provide interfaces to specific programming libraries.
+4  Devices and Special Fiels  File system nodes that represent hardware devices or software devices.
+5  File Formats and Conventions   The structure and format of file types or specific configuration files.
+6  Games          Games available on the system
+7  Miscellaneous  Overviews of miscellaneous topics such as protocols, filesystems and so on.
+8  System admin tools and Daemons  Commands that requre root or other admin priviledges
+9  Kernel routines [non standard]
+
+echo Hello          - prints to console string
+echo "Hello"
+cal                        - prints month
+cal 2017
+cal -y
+date                      - prints current datetime
+clear    or control-l  to clear the screen
+history                - prints command inputs
+!(lineNumber)    
+!!        - previous command
+history -c; history -w      -clears history list
+exit          - closes terminal
+
+
+Linux uses bash shell, apple uses zsh shell.
+windows uses cmd shell and powershell (no msDos)
+
+commandName options inputs
+
+commands need to be on the shell's search path
+echo $PATH        - lists the shell's search path
+which command      - shows the commands path.
+
+options modify a commands behavior.
+sometimes options can have inputs.
+
+commandName options inputs
+cal 12 2017
+cal -A 1 12 2017
+cal -B 1 12 2017
+cal -A 1 -B 1 12 2017
+cal --after 1 --before 1 12 2017
+
+man            - manual command
+man -k      - -k search option
+man -k which        - look up which
+man 1 which    - manual page for which section 1
+man which
+which file ...    - in man page, -a is not necessary.
+
+...         - more than 1 input
+<something>    - if present, it is required
+man [-a | -f] <something>        - ether -a or -f but not both. | pipe
+[] is optional 
+ 
+man -k "list directory contents"
+ls -l -h
+ls -lh        - same command
+
+man cd        - does not work
+help cd      - works
+help            - help commands list
+
+standard data stream and command line args
+data streams can flow.
+standard output    -- prints on terminal
+standard error        - connected to terminal
+standard input        - connected to keyboard
+command line arguments
+piping    - connecting standard input and standard output.
+cal -A 1 -B1 12 2017    - option a has command line arg 1
+		            - option b has command line arg 2
+		            - cal has command line arg 12 2017
+
+Redirection 
+cat 1> output.txt
+standard input 0   < 
+standard output 1  >
+standard error 2
+cat > output.txt      - shortcut
+- by default the command overwrites the file.
+cat 1>> output.txt      - solution to append the file txt.
+cat >> output.txt
+
+cat 2>> error.txt
+cat -k bla 2>> error.txt
+cat 1>> output.txt 2>> error.txt     - no error
+cat >> output.txt 2>> error.txt
+
+cat > input.txt
+cat 0< input.txt
+cat < input.txt
+
+cat 0< input.txt 1> hello.txt      - reads input.txt and writes to hello.txt
+
+tty    - where terminal is located
+cat 0< input.txt 1> /dev/pts/1    - writes to terminal
+
+
+
+apt 
+
+sudo apt edit-sources
+sudo nano /etc/apt/sources.list
+sudo apt -h
+man apt
+
+PIPING    - combines commands
+
+date 1>> date.txt     - writes date to date.txt
+date >> date.txt       - is able to create new file.
+
+Cut command  
+
+cut option... file...
+
+cut 0< date.txt
+cut < date.txt --delimiter “ ” --fields 1       Cuts line line into columns and retrieves first field
+date | cut --delimiter “ ” --fields 1             same process
+date | cut –delimiter “ ” --fields 1 > today.txt
+date | cut –delimiter “ ” > today.txt –fields 1
+
+date | cut –delimiter “ ” --fields 1 | command -options args | …..
+date | cut --delimiter=" " --fields=1
+
+
+T COMMAND
+
+date | tee fulldate.txt| cut --delimiter=" " --fields=1
+date | tee fulldate.txt| cut --delimiter=" " --fields=1 1>> today.txt     - no more piping allowed after redirection. Use tee if more pipes are needed
+
+
+
+
+
