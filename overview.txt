@@ -11,7 +11,7 @@ Manual Structure:
 
 echo Hello          - prints to console string
 echo "Hello"
-cal                        - prints month
+cal                       - prints month
 cal 2017
 cal -y
 date                      - prints current datetime
@@ -106,6 +106,9 @@ sudo nano /etc/apt/sources.list
 sudo apt -h
 man apt
 
+
+
+
 PIPING    - combines commands
 
 date 1>> date.txt     - writes date to date.txt
@@ -118,14 +121,20 @@ cut option... file...
 cut 0< date.txt
 cut < date.txt --delimiter “ ” --fields 1       Cuts line line into columns and retrieves first field
 date | cut --delimiter “ ” --fields 1             same process
-date | cut –delimiter “ ” --fields 1 > today.txt
-date | cut –delimiter “ ” > today.txt –fields 1
+date | cut –-delimiter “ ” --fields 1 > today.txt
+date | cut –-delimiter “ ” > today.txt –-fields 1
 
 date | cut –delimiter “ ” --fields 1 | command -options args | …..
 date | cut --delimiter=" " --fields=1
 
+Redirection is processed before pipes. 
+date > today.txt | cut --delimiter " " --fields 1    
+Command results in the file with date. cut has no data to work with. 
+This following command does not work.  
+date > today.txt | cut today.txt --delimiter " " --fields 1     
+Pipeline breaks.   
 
-T COMMAND
+T COMMAND fixes the previous issue
 
 date | tee fulldate.txt| cut --delimiter=" " --fields=1
 date | tee fulldate.txt| cut --delimiter=" " --fields=1 1>> today.txt     - no more piping allowed after redirection. Use tee if more pipes are needed
