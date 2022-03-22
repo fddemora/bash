@@ -121,9 +121,8 @@ cut option... file...
 cut 0< date.txt
 cut < date.txt --delimiter “ ” --fields 1       Cuts line line into columns and retrieves first field
 date | cut --delimiter “ ” --fields 1             same process
-date | cut –-delimiter “ ” --fields 1 > today.txt
+date | cut –-delimiter “ ” --fields 1 > today.txt   data gets written to today.txt
 date | cut –-delimiter “ ” > today.txt –-fields 1
-
 date | cut –delimiter “ ” --fields 1 | command -options args | …..
 date | cut --delimiter=" " --fields=1
 
@@ -138,6 +137,15 @@ T COMMAND fixes the previous issue
 
 date | tee fulldate.txt| cut --delimiter=" " --fields=1
 date | tee fulldate.txt| cut --delimiter=" " --fields=1 1>> today.txt     - no more piping allowed after redirection. Use tee if more pipes are needed
+
+
+Xargs 
+
+date | echo    echo doesn't accept standard input 
+date | xargs echo      converts stinput into command line arg
+date | xargs echo "hello"    still works - hello is processed first 
+date | cut --delimiter=" " --fields=1 | xargs echo  
+cat filestodelete.txt | xargs rm   
 
 
 
