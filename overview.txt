@@ -147,6 +147,11 @@ date | xargs echo "hello"    still works - hello is processed first
 date | cut --delimiter=" " --fields=1 | xargs echo  
 cat filestodelete.txt | xargs rm   
 
+Aliases
+
+touch .bash_aliases
+alias getdates='date | tee /home/me/fulldate.txt | cut --delimiter=" " --fields=1 | tee /home/me/shortdate.txt | xargs echo "hello"'
+
 
 
 
